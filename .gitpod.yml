@@ -1,0 +1,20 @@
+image:
+  file: .gitpod.Dockerfile
+
+vscode:
+  extensions:
+    - dbaeumer.vscode-eslint
+    - eamodio.gitlens
+
+tasks:
+  - init: |
+      echo "//registry.npmjs.org/:_authToken=${NPM_TOKEN}" > ${THEIA_WORKSPACE_ROOT}/.npmrc
+      npm install -g npm@latest
+      npm install -g vercel
+      yarn install
+      # yarn run build
+    command: |
+      yarn dev
+ports:
+  - port: 3000
+    onOpen: open-preview
